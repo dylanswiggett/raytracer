@@ -8,13 +8,14 @@ using namespace std;
 #include "Scene.hpp"
 #include "SceneObject.hpp"
 #include "SceneObjects.hpp"
+#include "RayMapper.hpp"
 
 int main(int argc, char** argv) {
   png::image<png::rgb_pixel> image(512, 512);
 
   Scene scene;
 
-  Sphere *s = new Sphere(glm::vec3(-3, .2, 0), 3);
+  Sphere *s = new Sphere(glm::vec3(-3, -1, 0), 3);
   s->getmat()->reflectivity = .4;
   scene.addSceneObject(s);
   scene.addSceneObject(new Sphere(glm::vec3(1, 4, 1), 1));
@@ -46,6 +47,8 @@ int main(int argc, char** argv) {
   float rightOffset = 2 / ((float) w);
   float upOffset = 2 / ((float) h);
 
+  RayMapper mapper(&scene);
+
   for (float x = 0; x < w; x++) {
     for (float y = 0; y < h; y++) {
       Ray camRay(camPos,
@@ -53,7 +56,7 @@ int main(int argc, char** argv) {
           camRight * ((x - w/2) * rightOffset) +
           camUp * ((y - h/2) * upOffset)));
 
-      glm::vec3 color = scene.raytrace(camRay, 3);
+      glm::vec3 color = mapper.colorAlongPath(camRay);
 
       image[x][y] = png::rgb_pixel(color.x * 255, color.y * 255, color.z * 255);
     }
