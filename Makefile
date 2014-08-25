@@ -1,5 +1,5 @@
-eCXX = g++
-FLAGS = -Wall -g -std=c++11
+CXX = g++
+FLAGS = -Wall -g -std=c++11 -pg
 
 LIBS = main Scene SceneObjects PathTracer RayMapper
 
@@ -20,3 +20,6 @@ PathTracer.o: PathTracer.cpp PathTracer.hpp Scene.hpp
 
 RayMapper.o: RayMapper.cpp RayMapper.hpp Scene.hpp Ray.hpp
 	$(CXX) $(FLAGS) -c -o RayMapper.o RayMapper.cpp
+
+clean:
+	rm -f *.o

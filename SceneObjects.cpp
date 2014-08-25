@@ -29,7 +29,7 @@ Ray *Sphere::raytrace(Ray *ray) {
 
   ray->rayMax = t;
 
-  return new Ray(intersection, glm::normalize(intersection - pos_));
+  return new Ray(intersection, (intersection - pos_) / rad_);
 }
 
 /*********

@@ -9,13 +9,14 @@ using namespace std;
 #include "SceneObject.hpp"
 #include "SceneObjects.hpp"
 #include "RayMapper.hpp"
+#include "PathTracer.hpp"
 
 int main(int argc, char** argv) {
   png::image<png::rgb_pixel> image(512, 512);
 
   Scene scene;
 
-  Sphere *s = new Sphere(glm::vec3(-3, -1, 0), 3);
+  Sphere *s = new Sphere(glm::vec3(-2, -1, -30), 19);
   s->getmat()->reflectivity = .4;
   s->getmat()->light_emit = 1;
   scene.addSceneObject(s);
@@ -52,7 +53,7 @@ int main(int argc, char** argv) {
   float rightOffset = 2 / ((float) w);
   float upOffset = 2 / ((float) h);
 
-  RayMapper mapper(&scene);
+  PathTracer mapper(&scene);
 
   for (float x = 0; x < w; x++) {
     for (float y = 0; y < h; y++) {
