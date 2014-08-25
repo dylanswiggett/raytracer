@@ -7,8 +7,10 @@
 class PathTracer {
 public:
   PathTracer(Scene *scene_init) : scene_(scene_init) { };
-  glm::vec3 colorAlongPath(glm::vec3 path);
+  glm::vec3 colorAlongPath(Ray path);
 private:
+  glm::vec3 random_dir_in_hemisphere(glm::vec3 normal);
+  glm::vec3 pathtrace(Ray r, int max_depth);
   Scene *scene_;
 };
 

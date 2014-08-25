@@ -17,6 +17,11 @@ int main(int argc, char** argv) {
 
   Sphere *s = new Sphere(glm::vec3(-3, -1, 0), 3);
   s->getmat()->reflectivity = .4;
+  s->getmat()->light_emit = 1;
+  scene.addSceneObject(s);
+
+  s = new Sphere(glm::vec3(-3, -1, 0), 3);
+  s->getmat()->reflectivity = .4;
   scene.addSceneObject(s);
   scene.addSceneObject(new Sphere(glm::vec3(1, 4, 1), 1));
   scene.addSceneObject(new Sphere(glm::vec3(3, .4, -1), 2));
