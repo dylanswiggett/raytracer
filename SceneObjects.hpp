@@ -9,7 +9,7 @@
 class Sphere : public SceneObject {
 public:
   Sphere(glm::vec3 position, float radius) : pos_(position), rad_(radius) { };
-  virtual Ray *raytrace(Ray *ray);
+  virtual bool raytrace(Ray *ray, Ray *ret);
 private:
   glm::vec3 pos_;
   float rad_;
@@ -18,7 +18,7 @@ private:
 class Plane : public SceneObject {
 public:
   Plane(glm::vec3 position, glm::vec3 normal) : pos_(position), norm_(glm::normalize(normal)) { };
-  virtual Ray *raytrace(Ray *ray);
+  virtual bool raytrace(Ray *ray, Ray *ret);
 protected:
   glm::vec3 pos_;
   glm::vec3 norm_;

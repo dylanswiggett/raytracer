@@ -1,5 +1,5 @@
 CXX = g++
-FLAGS = -Wall -g -std=c++11 -pg
+FLAGS = -Wall -g -std=c++11 -O3
 
 LIBS = main Scene SceneObjects PathTracer RayMapper
 

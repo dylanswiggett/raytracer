@@ -10,7 +10,7 @@ public:
   glm::vec3 colorAlongPath(Ray path);
 private:
   glm::vec3 random_dir_in_hemisphere(glm::vec3 normal);
-  glm::vec3 pathtrace(Ray r, int max_depth, float *light);
+  glm::vec3 pathtrace(Ray r, int num_rays, int max_depth, float *light);
   Scene *scene_;
 };
 

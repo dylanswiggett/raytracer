@@ -13,24 +13,27 @@ Scene::~Scene() {
   delete objects_;
 }
 
-void Scene::raytrace(Ray &ray, Ray **collision_ret, Material **material_ret) {
-  Ray *r = nullptr;
+bool Scene::raytrace(Ray &ray, Ray *collision_ret, Material **material_ret) {
+  Ray r;
   Material *m;
+  bool success = false;
 
   for (auto obj : *objects_) {
-    Ray *r_temp = obj->raytrace(&ray);
-    if (r_temp != nullptr) {
-      if (r != nullptr)
-        delete r;
+    Ray r_temp;
+    if (obj->raytrace(&ray, &r_temp)) {
       r = r_temp;
       m = obj->getmat();
+      success = true;
     }
   }
 
-  if (r != nullptr)
+  if (success) {
     *collision_ret = r;
+    *material_ret = m;
+    return true;
+  }
 
-  *material_ret = m;
+  return false;
 }
 
 void Scene::addSceneObject(SceneObject *obj) {

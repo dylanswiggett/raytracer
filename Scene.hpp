@@ -12,7 +12,7 @@ class Scene {
 public:
   Scene();
   virtual ~Scene();
-  void raytrace(Ray &ray, Ray **collision_ret, Material **material_ret);
+  bool raytrace(Ray &ray, Ray *collision_ret, Material **material_ret);
   virtual void addSceneObject(SceneObject *obj);
 private:
   vector<SceneObject *> *objects_;
